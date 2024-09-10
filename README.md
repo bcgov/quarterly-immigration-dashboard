@@ -10,7 +10,7 @@ R folders
 
 ### Usage
 
-Please run the script app.R
+Please create a Shiny Web App using the RStudio dropdown menu and run the script app.R
 
 ### Project Status
 
