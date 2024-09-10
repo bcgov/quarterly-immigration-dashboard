@@ -88,6 +88,7 @@ if(!require(RColorBrewer)){
 options(scipen=999999)
 
 
+
 # Downloading Canadian Geo Data and simplifying it 
 
 canada_prov<- geodata::gadm("Canada", level = 1, path = ".",resolution = 2)
