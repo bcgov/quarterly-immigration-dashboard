@@ -97,7 +97,7 @@ canada_prov<- rmapshaper::ms_simplify(canada_prov, keep = 0.002, keep_shapes = T
 
 # Downloading zip file for NPR data and reading the csv file 
 temp <- tempfile()
-download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100121-eng.zip", temp)
+download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100121-eng.zip", here(temp))
 imm_new <- read_csv(unz(here(temp), "17100121.csv"))
 unlink(temp)
 
@@ -125,7 +125,7 @@ imm_new<-
 # Downloading zip file for inter-provincial immigration data and reading the csv file 
 
 temp <- tempfile()
-download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100020-eng.zip",temp)
+download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100020-eng.zip", here(temp))
 int_prov_in <- read_csv(unz(here(temp), "17100020.csv"))
 unlink(temp)
 
@@ -171,7 +171,7 @@ rm(canada_prov)
 # Downloading zip file for international migration data and reading the csv file 
 
 temp <- tempfile()
-download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100040-eng.zip",temp)
+download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100040-eng.zip", here(temp))
 imm_imm <- read_csv(unz(here(temp), "17100040.csv"))
 unlink(temp)
 
