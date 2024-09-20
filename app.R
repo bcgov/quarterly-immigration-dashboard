@@ -105,10 +105,7 @@ unlink(temp)
 # Downloading zip file for NPR data and reading the csv file 
 imm_new<-(imm_new) %>% clean_names(.) %>% 
   mutate(datemonth=ref_date %>% as.yearmon(.) %>% 
-           as_date) 
-  
-imm_new<-
-  imm_new %>% 
+           as_date) %>% 
   mutate(date=paste0(substr(imm_new$ref_date,1,4),"-Q", lubridate::quarter(substr(imm_new$ref_date,6,7) %>% as.numeric))) %>% 
   group_by(ref_date, geo) %>% 
   mutate(total_imm_cat=ifelse(non_permanent_resident_types=="Total, non-permanent residents",value,0),
@@ -178,7 +175,7 @@ unlink(temp)
 # Downloading zip file for natural increase data and reading the csv file 
 
 temp <- tempfile()
-download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100059-eng.zip",temp)
+download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100059-eng.zip", here(temp))
 nat_inc <- read_csv(unz(here(temp), "17100059.csv"))
 unlink(temp)
 
@@ -251,7 +248,7 @@ imm <-
 
 # Downloading zip file for total population estimates and reading the csv file (to use in the infobox)
 temp <- tempfile()
-download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100009-eng.zip",temp)
+download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100009-eng.zip", here(temp))
 tot_pop <- read_csv(unz((temp), "17100009.csv")) %>% clean_names(.) %>% filter(geo=="British Columbia") %>%
   mutate(datemonth=(ref_date %>% as.yearmon(.) %>% as_date),
          date=paste0(substr(ref_date,1,4),"-Q", lubridate::quarter(substr(ref_date,6,7) %>% as.numeric)))
@@ -261,7 +258,7 @@ unlink(temp)
 
 # Downloading zip file for inter provincialmigration with origin-dest data and reading the csv file 
 temp <- tempfile()
-download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100045-eng.zip",temp)
+download.file("https://www150.statcan.gc.ca/n1/tbl/csv/17100045-eng.zip", here(temp))
 int_prov <- read_csv(unz((temp), "17100045.csv"))
 unlink(temp)
 
